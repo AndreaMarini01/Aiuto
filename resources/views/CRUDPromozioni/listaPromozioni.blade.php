@@ -9,24 +9,18 @@
 
     <?php $info = \App\Models\Coupon::all(); ?>
 
-    @for($i=0;$i<=sizeof($info)-1;$i++)
-        <form action="{{route('promozioni')}}" method="POST" class="form">
-            @csrf
-            <div class="promozione">
-                <div><p id="idCoupon"> Nome offerta: {{$info[$i]['idCoupon']}} </p></div>
-                <div><p id="oggetto"> Oggetto offerta: {{$info[$i]['oggetto']}} </p></div>
-                <div class="nomeCoupon"> <input name="idCoupon" value="{{$info[$i]['idCoupon']}}"></div>
-                <div>
-                    <div class="bottoni1"> <input type="submit" value="MODIFICA" formaction="{{route('modificaPromozionePost')}}"> </div>
-                    <div class="bottoni2"> <input type="submit" value="VISUALIZZA" formaction="{{route('visualizzaPromozionePost')}}"> </div>
-                </div>
-            </div>
-        </form>
-    @endfor
-    <form action="{{route('creaPromozione')}}" method="POST" class="form">
+    @foreach($listaPromozioni as $promozione)
         @csrf
-        <div class="aggiungiOfferta"><button type="submit">+</button></div>
-    </form>
-
+        <div class="promozione">
+            <div><p id="idCoupon"> Nome offerta: {{$promozione->idCoupon}} </p></div>
+            <div><p id="oggetto"> Oggetto offerta: {{$promozione->oggetto}} </p></div>
+            <div class="nomeCoupon"> <input name="idCoupon" value="{{$promozione->idCoupon}}"></div>
+            <div>
+                <div class="bottoni1"> <input type="submit" value="MODIFICA" onclick="location.href='{{route('modificaPromozione', ['idCoupon'=>$promozione->idCoupon])}}';"> </div>
+                <div class="bottoni2"> <input type="submit" value="VISUALIZZA" onclick="location.href='{{route('visualPromozione', ['idCoupon'=>$promozione->idCoupon])}}';"> </div>
+            </div>
+        </div>
+    @endforeach
+    <div class="aggiungiOfferta"><button type="submit" onclick="location.href='{{route('promozioneCreator')}}';">+</button></div>
 @endsection
 </html>

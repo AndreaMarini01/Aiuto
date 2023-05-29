@@ -2,33 +2,40 @@
 <html>
 @extends('layout.layout')
 @section('customCss')
-    <link rel="stylesheet" type="text/css" href="{{URL('css\CRUDAzienda\listaAzienda.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{URL('css\CRUDAzienda\infoAzienda.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{URL('css\CRUDAzienda\listaAziende.css') }}">
 @endsection
 @section('content')
-
-    <?php $info = \App\Models\Azienda::all(); ?>
-
     <ul>
-        @for($i=0;$i<=sizeof($info)-1;$i++)
-            <form method="POST" class="form">
-                @csrf
-                <div class="lista-aziende">
+        <!-- ogni elemento in lista-aziende sarà serializzato
+            La funzione di interesse prenderà i dati da db, poi con un foreach produrrà tutti i risultati utili
+         -->
+
+        <div class="lista-aziende">
+            @if(!empty($listaAziende))
+                @foreach($listaAziende as $azienda)
                     <li>
-                        <div class="nomeAzienda"> <input name="id" value="{{$info[$i]['id']}}"> </div>
-                        <img  src={{URL($info[$i]['logo'])}} height="200"width="200">
-                        <div class="testolista"> {{$info[$i]['descrizioneAzienda']}}</div>
-                        <div class="bottoni1"> <input type="submit" value="MODIFICA" formaction="{{route('modificaAzienda')}}"> </div>
-                        <div class="bottoni2"> <input type="submit" value="VISUALIZZA" formaction="{{route('visualizzaAziendaPost')}}"> </div>
+                        <img src="https://www.strunkmedia.com/wp-content/uploads/2018/05/bigstock-221516158.jpg" height="200"width="200">
+                        <h3>{{$azienda->nomeAzienda}}</h3>
+                        <div class="testolista"> {{$azienda->descrizioneAzienda}}</div>
+                        @if(isset(Auth::User()->nome))
+                            @if((Auth::User()->role)=='admin')
+                                <button onclick="location.href='{{route('modificaAzienda', ['id'=>$azienda->id])}}';">Modifica Azienda</button>
+                            @endif
+                        @endif
+                        <button onclick="location.href='{{route('azienda', ['id'=>$azienda->id])}}';">Visual Azienda</button>
                     </li>
-                </div>
-            </form>
-        @endfor
+                @endforeach
+            @endif
+        </div>
     </ul>
-
-    <form action="{{route('creaAzienda')}}" method="POST" class="form">
-        @csrf
-        <div class="aggiungiAzienda"><button type="submit">+</button></div>
-    </form>
-
+    @if(isset(Auth::User()->nome))
+        @if((Auth::User()->role)=='admin')
+            <div class="aggiungiAzienda">
+                <button  onclick="location.href='{{route('aziendaCreator', ['option'=>'create'])}}';">+</button>
+                <br><br>
+            </div>
+        @endif
+    @endif
 @endsection
 </html>
