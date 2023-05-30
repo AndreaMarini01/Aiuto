@@ -40,3 +40,59 @@
 .nomeCoupon{
     visibility: hidden;
 }
+
+.filtri{
+    width: 700px;
+    height: 90px;
+    display:none;
+    border: 2px solid black;
+    background-color: whitesmoke;
+    z-index: 1;
+    float: left;
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
+.filtri p,label{
+    margin-left: 10px;
+}
+
+
+#filter-button {
+    width: 250px;
+    height: 50px;
+    font-size: large;
+    font-weight: bold;
+    float: left;
+    margin-top: 40px;
+}
+
+
+#close-button{
+    font-weight: bold;
+    font-style: italic;
+    font-size: small;
+    float:right;
+    margin-right: 3px;
+    position: relative;
+    bottom: 45px;
+
+}
+
+
+.body{
+    z-index: 0;
+}
+
+.horizontal{
+    display: inline;
+}
+
+.ricerca{
+    margin-left: 10px;
+}
+
+.searched-content{
+    position:relative;
+    bottom:3px;
+}

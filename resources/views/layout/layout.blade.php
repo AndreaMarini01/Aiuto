@@ -14,7 +14,7 @@
         </div>
         <div class="navbar-right">
             @include('navItem/onlyRoute', ['route'=>'home'], ['value'=>'Home'])
-            @include('navItem/onlyRoute', ['route'=>'catalogo'], ['value'=>'Catalogo'])
+            @include('navItem/onlyRoute', ['route'=>'listaPromozioni'], ['value'=>'Catalogo'])
             @include('navItem/onlyRoute', ['route'=>'listaAziende'], ['value'=>'Info Aziende'])
             @include('navItem/onlyRoute', ['route'=>'faq'], ['value'=>'FAQ'])
 
@@ -25,9 +25,6 @@
             @else
                 @include('navItem/onlyRoute', ['route'=>'profile'], ['value'=>'Profilo'])
 
-                @if((Auth::User()->role)=='staff')
-                    @include('navItem/onlyRoute', ['route'=>'listaPromozioni'], ['value'=>'Promozioni']) <!--todo-->
-                @endif
 
                 @if((Auth::User()->role)=='admin')
                     @include('navItem/onlyRoute', ['route'=>'home'], ['value'=>'Gestione Staff']) <!--todo-->

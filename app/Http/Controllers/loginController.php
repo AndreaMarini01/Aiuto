@@ -68,7 +68,9 @@ class loginController extends Controller
                 break;
             case 'user': return redirect()->route('home');
                 break;
-            default: return redirect('catalogo');
+            case 'staff':return redirect()->route('home');
+
+           // default: return redirect('catalogo');
         }
 
 

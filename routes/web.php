@@ -25,10 +25,9 @@ Route::get('/', [publicController::class, 'home'])->name('home');
 
 Route::get('/home', [publicController::class, 'home'])->name('home');
 
-Route::get('/test', [publicController::class, 'test'])->name('test');
 
-Route::get('/catalogo', [publicController::class, 'catalogo'])->name('catalogo');
-Route::post('/catalogo', [filterController::class, 'ajaxResponse'])->name('catalogoPost');
+
+
 
 
 Route::get('/info', [publicController::class, 'info'])->name('info');
@@ -46,6 +45,10 @@ Route::post('/signup', [loginController::class, 'signupPost'])->name('signupPost
 Route::post('/logout', [loginController::class, 'logout'])->name('logout');
 
 
+//Rotta per i filtri
+Route::get('/listaPromozioni/filtered', [filterController::class, 'filter'])->name('filtri');
+Route::get('/listaPromozioni/filtered2', [filterController::class, 'filter2'])->name('filtri2');
+Route::get('/listaPromozioni/filtered3', [filterController::class, 'filter3'])->name('filtri3');
 
 
 //Rotte per il CRUD delle promozioni
