@@ -40,12 +40,10 @@
                 <th>Genere:</th>
                 <td>{{$utente['genere']}}</td>
             </tr>
-            <tr>
-                <th>Numero Coupon salvati:</th>
-                <td>4</td>
-            </tr>
         </table>
         <button onclick="location.href='{{route('modificaProfilo')}}'">Modifica Profilo</button>
+        @if(Auth::User()->role=='user')
         <button onclick="location.href='{{route('couponSalvati')}}'">Visualizza Coupon Salvati</button>
+        @endif
 @endif
 @endsection

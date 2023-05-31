@@ -26,7 +26,8 @@ class User extends Authenticatable
         'datadinascita',
         'username',
         'cognome',
-        'genere'
+        'genere',
+        'role'
     ];
 
     /**

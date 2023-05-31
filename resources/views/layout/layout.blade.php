@@ -22,19 +22,18 @@
             @if(!Auth::check())
                 @include('navItem/onlyRoute', ['route'=>'login'], ['value'=>'Login'])
                 @include('navItem/onlyRoute', ['route'=>'signup'], ['value'=>'Registrati'])
-            @else
+            @elseif (Auth::User()->role=='user' or Auth::User()->role=='staff')
                 @include('navItem/onlyRoute', ['route'=>'profile'], ['value'=>'Profilo'])
 
 
-                @if((Auth::User()->role)=='admin')
-                    @include('navItem/onlyRoute', ['route'=>'home'], ['value'=>'Gestione Staff']) <!--todo-->
-                    @include('navItem/onlyRoute', ['route'=>'home'], ['value'=>'Gestione Utenti']) <!--todo-->
-                    @include('navItem/onlyRoute', ['route'=>'statistiche'], ['value'=>'Statistiche']) <!--todo-->
-                @endif
+            @elseif((Auth::User()->role)=='admin')
+                    @include('navItem/onlyRoute', ['route'=>'listaUtenti'], ['value'=>'Gestione Utenti'])
+                    @include('navItem/onlyRoute', ['route'=>'statistiche'], ['value'=>'Statistiche'])
+            @endif
 
 
                 @include('navItem/logout')
-            @endif
+
 
         </div>
 

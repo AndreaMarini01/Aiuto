@@ -7,6 +7,7 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\promozioniController;
 use App\Http\Controllers\publicController;
+use App\Http\Controllers\staffController;
 use App\Http\Controllers\statsController;
 use Illuminate\Support\Facades\Route;
 
@@ -83,9 +84,17 @@ Route::get('/faqdelete/{id}', [faqController::class, 'faqdelete'])->name('faqdel
 Route::get('/saveFaq/{id}', [faqController::class, 'savefaq'])->name('salvaFaq')->middleware('auth');
 Route::get('/createfaq', [faqController::class, 'faqCreate'])->name('creaFaq')->middleware('auth');
 
-
+//Statistiche
 Route::get('/statistiche',[statsController::class, 'stats'])->name('statistiche');
 
-//Coupon
+//Coupon Utente liv1
 Route::get('/salvaCoupon', [promozioniController::class, 'salvaCoupon'])->name('salvaCoupon');
 Route::get('/couponSalvati', [promozioniController::class, 'couponSalvati'])->name('couponSalvati');
+
+//CRUDStaff
+Route::get('/listaStaff', [staffController::class, 'listaStaff'])->name('listaUtenti');
+Route::get('/eliminaStaff', [staffController::class, 'eliminaStaff'])->name('eliminaStaff');
+Route::post('/editStaff', [staffController::class, 'editStaff'])->name('editStaff');
+Route::post('/creaStaff', [staffController::class, 'creaStaff'])->name('creaStaff');
+Route::get('/staffCreator', [staffController::class, 'staffCreator'])->name('staffCreator');
+Route::get('/modificaStaff', [staffController::class, 'modificaStaff'])->name('modificaStaff');
