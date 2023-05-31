@@ -3,6 +3,7 @@
 @extends('layout.layout')
 @section('customCss')
     <link rel="stylesheet" type="text/css" href="{{URL('css\CRUDPromozioni\listaPromozioni.css') }}">
+
 @endsection
 
 @section('content')
@@ -94,7 +95,7 @@
         $.ajax({
             type:'GET',
             url: '{{route('filtri3')}}',
-            data: {'ricercaParola':$value,'ricercaAzinenda':$value},
+            data: {'ricercaParola':$value,'ricercaAzienda':$value},
             success:function(data) {
                 console.log(data);
                 $('#searched-content').html(data);
@@ -103,9 +104,10 @@
         })
 
     })
+
     </script>
 
-
+    @if(Auth::user()->role=='staff')
     <div class="horizontal">
         <button id=filter-button type="button">FILTRI</button>
             <div id="filtri" class="filtri">
@@ -117,22 +119,26 @@
                 <button id=close-button type="button">X</button>
             </div>
     </div>
+    @endif
     <br><br><br><br><br>
 
     <div id="all-data">
     @foreach($listaPromozioni as $promozione)
         @csrf
         <div class="promozione">
-            <div><p id="idCoupon"> Nome offerta: {{$promozione->idCoupon}} </p></div>
+            <div><p id="nomeCoupon"> Nome offerta: {{$promozione->nomeCoupon}} </p></div>
             <div><p id="oggetto"> Oggetto offerta: {{$promozione->oggetto}} </p></div>
-            <div class="nomeCoupon"> <input name="idCoupon" value="{{$promozione->idCoupon}}"></div>
+            <div class="nomeCoupon"> <input name="nomeCoupon" value="{{$promozione->nomeCoupon}}"></div>
             <!-- Da mettere il middleware in modo che sogli gli utenti staff possano vederlo -->
-            @if(Auth::check())
+            @if(Auth::user()->role=='staff')
                 <div>
                     <div class="bottoni1"> <input type="submit" value="MODIFICA" onclick="location.href='{{route('modificaPromozione', ['idCoupon'=>$promozione->idCoupon])}}';"> </div>
                     <div class="bottoni2"> <input type="submit" value="VISUALIZZA" onclick="location.href='{{route('visualPromozione', ['idCoupon'=>$promozione->idCoupon])}}';"> </div>
                 </div>
            @endif
+            @if(Auth::user()->role=='user')
+                <div><button type="submit" onclick="location.href='{{route('salvaCoupon', ['idCoupon'=>$promozione->idCoupon])}}';">Salva coupon</button></div>
+            @endif
         </div>
 
     @endforeach
@@ -143,7 +149,7 @@
         <div id="searched-content" class="searched-content"></div>
 
     <!-- Da mettere il middleware in modo che sogli gli utenti staff possano vederlo -->
-    @if(Auth::check())
+    @if(Auth::user()->role=='staff')
     <div class="aggiungiOfferta"><button type="submit" onclick="location.href='{{route('promozioneCreator')}}';">+</button></div>
     @endif
     <br>

@@ -14,14 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('coupons', function (Blueprint $table) {
-            $table->string('idCoupon');
+            $table->bigIncrements('idCoupon');
             $table->string('idAzienda');
             $table->string('oggetto');
             $table->string('modalità');
             $table->string('scontistica');
             $table->string('qrCode');
             $table->string('luogoFruizione');
-            $table->string('tempoFruizione');
+            $table->date('dataScadenza');
+            $table->string('nomeCoupon');
         });
     }
 

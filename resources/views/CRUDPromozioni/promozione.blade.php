@@ -17,7 +17,7 @@
                 <div><p>Sconto: {{$promozione->scontistica}}</p></div>
                 <div><p>QrCode: {{$promozione->qrCode}}</p></div>
                 <div><p>Usufruibile presso: {{$promozione->luogoFruizione}}</p></div>
-                <div><p>Nel periodo: {{$promozione->tempoFruizione}}</p></div>
+                <div><p>Nel periodo: {{$promozione->dataScadenza}}</p></div>
             </div>
         @endforeach
     @endif

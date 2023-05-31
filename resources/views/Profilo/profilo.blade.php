@@ -46,6 +46,6 @@
             </tr>
         </table>
         <button onclick="location.href='{{route('modificaProfilo')}}'">Modifica Profilo</button>
-        <button onclick="visualizzaCoupon()">Visualizza Coupon Salvati</button>
+        <button onclick="location.href='{{route('couponSalvati')}}'">Visualizza Coupon Salvati</button>
 @endif
 @endsection

@@ -28,7 +28,7 @@
 
 .Titolo{
     z-index: -1;
-    margin-top: 40px;
+    margin-top: -70px;
 }
 
 .utente{
@@ -41,7 +41,7 @@
     font-size: 17px;
     padding: 14px 16px 30px;
     border-radius: 10px;
-    margin-bottom: 80px;
+    margin-bottom: 120px;
 }
 
 .retroutente{
@@ -54,7 +54,7 @@
     font-size: 17px;
     padding: 14px 16px 30px;
     border-radius: 10px;
-    margin-bottom: 80px;
+    margin-bottom: 120px;
     display: none;
 }
 
@@ -73,4 +73,6 @@
     float: right;
 }
 
-
+.invisibile{
+    visibility: hidden;
+}

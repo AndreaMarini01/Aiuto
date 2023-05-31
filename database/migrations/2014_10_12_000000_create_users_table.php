@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('username');
             $table->string('cognome');
             $table->string('genere');
-            $table->string('role');
+            $table->string('role',10)->default('user');
         });
 
 

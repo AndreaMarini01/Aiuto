@@ -85,3 +85,7 @@ Route::get('/createfaq', [faqController::class, 'faqCreate'])->name('creaFaq')->
 
 
 Route::get('/statistiche',[statsController::class, 'stats'])->name('statistiche');
+
+//Coupon
+Route::get('/salvaCoupon', [promozioniController::class, 'salvaCoupon'])->name('salvaCoupon');
+Route::get('/couponSalvati', [promozioniController::class, 'couponSalvati'])->name('couponSalvati');
