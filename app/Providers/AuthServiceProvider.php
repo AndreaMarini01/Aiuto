@@ -25,7 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //Da decidere dove utilizzare le regole di autorizzazione (scegliere tra controller, rotta o vista)
+        //Da decidere dove utilizzare le regole di autorizzazione
+        //Utiliziamo i middleware nelle routes
 
         Gate::define('isAdmin', function ($user) {
             return $user->hasRole('admin');

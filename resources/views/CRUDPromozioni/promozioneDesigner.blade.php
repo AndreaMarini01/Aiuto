@@ -21,41 +21,131 @@
                 <center><form method="POST" class="form">
                         @csrf
                         <h2>Modifica i dati della promozione:</h2>
-                        <label for="nomeCoupon">Nome Coupon:</label>
-                        <input name="nomeCoupon" id="nomeCoupon" value="{{$promo->nomeCoupon}}"><br><br>
+                        <label for="nomePromozione">Nome Coupon:</label>
+                        <input type= "text"name="nomePromozione" id="nomePromozione" value="{{$promo->nomePromozione}}">
+                        @if ($errors->first('nomePromozione'))
+                            <ul class="errore">
+                                @foreach ($errors->get('nomePromozione') as $message)
+                                    {{ $message }}
+                                @endforeach
+                            </ul>
+                        @endif
+                        <br><br>
                         <label for="oggetto">Oggetto:</label>
-                        <input type="text" id="oggetto" name="oggetto" value="{{$promo->oggetto}}"><br><br>
+                        <input type="text" id="oggetto" name="oggetto" value="{{$promo->oggetto}}">
+                        @if ($errors->first('oggetto'))
+                            <ul class="errore">
+                                @foreach ($errors->get('oggetto') as $message)
+                                    {{ $message }}
+                                @endforeach
+                            </ul>
+                        @endif
+                        <br><br>
                         <label for="modalità">Modalità:</label>
-                        <input type="text" id="modalità" name="modalità" value="{{$promo->modalità}}"><br><br>
+                        <input type="text" id="modalità" name="modalità" value="{{$promo->modalità}}">
+                        @if ($errors->first('modalità'))
+                            <ul class="errore">
+                                @foreach ($errors->get('modalità') as $message)
+                                    {{ $message }}
+                                @endforeach
+                            </ul>
+                        @endif
+                        <br><br>
                         <label for="scontistica">Scontistica:</label>
-                        <input type="text" id="scontistica" name="scontistica" value="{{$promo->scontistica}}"><br><br>
-                        <label for="luogoFruizione">Luogo fruizione:</label>
-                        <input type="text" id="luogoFruizione" name="luogoFruizione" value="{{$promo->luogoFruizione}}"><br><br>
+                        <input type="text" id="scontistica" name="scontistica" value="{{$promo->scontistica}}">
+                        @if ($errors->first('scontistica'))
+                            <ul class="errore">
+                                @foreach ($errors->get('scontistica') as $message)
+                                    {{ $message }}
+                                @endforeach
+                            </ul>
+                        @endif
+                        <br><br>
+                        <label for="luogoFruizione">Luogo Fruizione:</label>
+                        <input type="text" id="luogoFruizione" name="luogoFruizione" value="{{$promo->luogoFruizione}}">
+                        @if ($errors->first('luogoFruizione'))
+                            <ul class="errore">
+                                @foreach ($errors->get('luogoFruizione') as $message)
+                                    {{ $message }}
+                                @endforeach
+                            </ul>
+                        @endif
+                        <br><br>
                             <?php $info = \App\Models\Azienda::all(); ?>
+                        <label>Azienda:</label>
                         @for($i=0;$i<=sizeof($info)-1;$i++)
                             <select id="Azienda" name="Azienda">
                                 <option value="{{$info[$i]['nomeAzienda']}}">{{$info[$i]['nomeAzienda']}}</option>
                                 @endfor
                             </select><br><br>
                             <label for="dataScadenza">Data di scadenza:</label>
-                            <input type="date" id="dataScadenza" name="dataScadenza" value="{{$promo->dataScadenza}}"><br><br>
-                            <input type="submit" value="Salva Modifiche" formaction="{{route('editPromozione',['id'=>$promo->idCoupon])}}">
-                            <input type="submit" value="ELIMINA" formaction="{{route('eliminaPromozione',['idCoupon'=>$promo->idCoupon])}}">
+                            <input type="date" id="dataScadenza" name="dataScadenza" value="{{$promo->dataScadenza}}">
+                            @if ($errors->first('dataScadenza'))
+                                <ul class="errore">
+                                    @foreach ($errors->get('dataScadenza') as $message)
+                                        {{ $message }}
+                                    @endforeach
+                                </ul>
+                            @endif
+                            <br><br>
+                            <input type="submit" value="Salva Modifiche" formaction="{{route('editPromozione',['id'=>$promo->idPromozione])}}">
+                            <input type="submit" value="ELIMINA" formaction="{{route('eliminaPromozione',['idPromozione'=>$promo->idPromozione])}}">
                     </form></center>
             @endforeach
+            <br><br>
         @else
             <form method="POST" class="form">
                 @csrf
-                <label for="nomeCoupon">Nome Offerta: </label>
-                <input type="text" id="nomeCoupon" name="nomeCoupon"><br><br>
+                <label for="nomePromozione">Nome Offerta: </label>
+                <input type="text" id="nomePromozione" name="nomePromozione">
+                @if ($errors->first('nomePromozione'))
+                    <ul class="errore">
+                        @foreach ($errors->get('nomePromozione') as $message)
+                            {{ $message }}
+                        @endforeach
+                    </ul>
+                @endif
+                <br><br>
                 <label for="oggetto">Oggetto:</label>
-                <input type="text" id="oggetto" name="oggetto"><br><br>
-                <label for="modalità">modalità:</label>
-                <input type="text" id="modalità" name="modalità"><br><br>
+                <input type="text" id="oggetto" name="oggetto">
+                @if ($errors->first('oggetto'))
+                    <ul class="errore">
+                        @foreach ($errors->get('oggetto') as $message)
+                            {{ $message }}
+                        @endforeach
+                    </ul>
+                @endif
+                <br><br>
+                <label for="modalità">Modalità:</label>
+                <input type="text" id="modalità" name="modalità">
+                @if ($errors->first('modalità'))
+                    <ul class="errore">
+                        @foreach ($errors->get('modalità') as $message)
+                            {{ $message }}
+                        @endforeach
+                    </ul>
+                @endif
+                <br><br>
                 <label for="scontistica">Scontistica:</label>
-                <input type="text" id="scontistica" name="scontistica"><br><br>
-                <label for="luogoFruizione">Luogo fruizione:</label>
-                <input type="text" id="luogoFruizione" name="luogoFruizione"><br><br>
+                <input type="text" id="scontistica" name="scontistica">
+                @if ($errors->first('scontistica'))
+                    <ul class="errore">
+                        @foreach ($errors->get('scontistica') as $message)
+                            {{ $message }}
+                        @endforeach
+                    </ul>
+                @endif
+                <br><br>
+                <label for="luogoFruizione">Luogo Fruizione:</label>
+                <input type="text" id="luogoFruizione" name="luogoFruizione">
+                @if ($errors->first('luogoFruizione'))
+                    <ul class="errore">
+                        @foreach ($errors->get('luogoFruizione') as $message)
+                            {{ $message }}
+                        @endforeach
+                    </ul>
+                @endif
+                <br><br>
                 <label for="Azienda">Azienda: </label>
                     <?php $info = \App\Models\Azienda::all(); ?>
                 <select id="Azienda" name="Azienda">
@@ -64,7 +154,15 @@
                     @endfor
                 </select><br><br>
                 <label for="dataScadenza">Data di scadenza:</label>
-                <input type="date" id="dataScadenza" name="dataScadenza"><br><br>
+                <input type="date" id="dataScadenza" name="dataScadenza">
+                @if ($errors->first('dataScadenza'))
+                    <ul class="erroreScadenza">
+                        @foreach ($errors->get('dataScadenza') as $message)
+                            {{ $message }}
+                        @endforeach
+                    </ul>
+                @endif
+                <br><br>
                 <input type="submit" value="Crea" formaction="{{route('creaPromozione')}}">
             </form></center>
             <br><br>

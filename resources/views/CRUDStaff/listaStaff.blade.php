@@ -7,9 +7,8 @@
 
 @section('content')
 
-    @if(sizeof($listaStaff)!=0)
-
     <div class="titolo">Gestisci i membri dello staff: </div>
+    @if(sizeof($listaStaff)!=0)
 
     @foreach($listaStaff as $membro)
         <div class="staff" >
@@ -25,9 +24,10 @@
     <div class="aggiungiStaff"><button onclick="location.href='{{route('staffCreator')}}';">+</button></div>
 
 
-    @if(sizeof($listaUtenti)!=0)
     <hr>
     <div class="titolo">Gestisci gli utenti: </div>
+    @if(sizeof($listaUtenti)!=0)
+
 
     @foreach($listaUtenti as $membro)
         <div class="utente" >
@@ -38,6 +38,7 @@
             </div>
         </div>
     @endforeach
+        <br><br>
 
     @endif
     <br><br><br><br><br><br>

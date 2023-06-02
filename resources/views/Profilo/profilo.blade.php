@@ -42,8 +42,8 @@
             </tr>
         </table>
         <button onclick="location.href='{{route('modificaProfilo')}}'">Modifica Profilo</button>
-        @if(Auth::User()->role=='user')
+        @can('isUser')
         <button onclick="location.href='{{route('couponSalvati')}}'">Visualizza Coupon Salvati</button>
-        @endif
+        @endcan
 @endif
 @endsection

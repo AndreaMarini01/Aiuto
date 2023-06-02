@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Azienda;
-use App\Models\Coupon;
+use App\Models\Promozione;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +18,7 @@ class filterController extends Controller
 public function filter(Request $request){
     $output="";
     $dataOdierna= new DateTime(date("Y-m-d"));
-    $filteredCoupons= Coupon::where('idAzienda','Like','%'.$request->ricercaAzienda.'%')->get();
+    $filteredCoupons= Promozione::where('idAzienda','Like','%'.$request->ricercaAzienda.'%')->get();
     foreach ($filteredCoupons as $filteredCoupon){
         $dataScadenza=new DateTime($filteredCoupon->dataScadenza);
         if($dataOdierna<=$dataScadenza){
@@ -39,7 +39,7 @@ return response($output);
 
         $output="";
         $dataOdierna= new DateTime(date("Y-m-d"));
-        $filteredCoupons= Coupon::where('oggetto','Like','%'.$request->ricercaParola.'%')->get();
+        $filteredCoupons= Promozione::where('oggetto','Like','%'.$request->ricercaParola.'%')->get();
         foreach ($filteredCoupons as $filteredCoupon){
             $dataScadenza=new DateTime($filteredCoupon->dataScadenza);
             if($dataOdierna<=$dataScadenza){
@@ -59,8 +59,8 @@ return response($output);
 
         $output="";
         $dataOdierna= new DateTime(date("Y-m-d"));
-        $filteredCouponsbyName= Coupon::where('idAzienda','Like','%'.$request->ricercaAzienda.'%')->get();
-        $filteredCouponsbyWords= Coupon::where('oggetto','Like','%'.$request->ricercaParola.'%')->get();
+        $filteredCouponsbyName= Promozione::where('idAzienda','Like','%'.$request->ricercaAzienda.'%')->get();
+        $filteredCouponsbyWords= Promozione::where('oggetto','Like','%'.$request->ricercaParola.'%')->get();
         $filteredCoupons=$filteredCouponsbyName+$filteredCouponsbyWords;
         foreach ($filteredCoupons as $filteredCoupon){
             $dataScadenza=new DateTime($filteredCoupon->dataScadenza);

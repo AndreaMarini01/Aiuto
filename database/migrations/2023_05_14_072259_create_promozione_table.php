@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('coupons', function (Blueprint $table) {
-            $table->bigIncrements('idCoupon');
-            $table->string('idAzienda');
+        Schema::create('promozione', function (Blueprint $table) {
+            $table->bigIncrements('idPromozione');
+            $table->string('nomeAzienda');
             $table->string('oggetto');
             $table->string('modalità');
-            $table->string('scontistica');
-            $table->string('qrCode');
+            $table->integer('scontistica');
             $table->string('luogoFruizione');
             $table->date('dataScadenza');
-            $table->string('nomeCoupon');
+            $table->string('nomePromozione');
         });
     }
 

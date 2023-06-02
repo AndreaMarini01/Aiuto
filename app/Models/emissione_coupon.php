@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class emissione_coupon extends Model
 {
     protected $table = 'emissione_coupon';
+    protected $primaryKey = ['idCoupon', 'idUtente'];
+
 
     protected $fillable = [
-        'idCoupon',
+        'idPromozione',
         'idUtente',
         'dataEmissione',
         'codice'

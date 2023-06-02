@@ -8,8 +8,8 @@ class Faq extends Model
 {
     protected $table = 'Faq';
 
+
     protected $fillable = [
-        'id',
         'domanda',
         'risposta'
     ];

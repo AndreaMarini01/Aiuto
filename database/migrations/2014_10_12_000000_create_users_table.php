@@ -16,12 +16,11 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome');
-            //$table->string('email')->unique();
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
-            $table->string('telefono');
+            $table->string('telefono')->unique();
             $table->date('datadinascita');
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('cognome');
             $table->string('genere');
             $table->string('role',10)->default('user');

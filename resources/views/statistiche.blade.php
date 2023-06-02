@@ -67,20 +67,21 @@
         {{$listaUtenti=$lista['listaUtenti']}}}
         {{$listaCoupon=$lista['listaCoupon']}}</div>
 
+    <br><br>
     <div class="Titolo"><h1>Statistiche</h1></div>
     <div class="numeroCoupon">Numero totale di coupon emessi: {{sizeof($listaPromozioni)}}</div>
     <hr>
     <div class="tipoStatistica">Seleziona il coupon di cui vuoi sapere le informazioni: </div>
     @for($i=0;$i<=sizeof($listaPromozioni)-1;$i++)
         <div class="promozione" id="promozione{{$i}}">
-            <div><p id="idCoupon"> Nome offerta: {{$listaPromozioni[$i]->nomeCoupon}} </p></div>
+            <div><p id="idCoupon"> Nome offerta: {{$listaPromozioni[$i]->nomePromozione}} </p></div>
             <div><p id="oggetto"> Oggetto offerta: {{$listaPromozioni[$i]->oggetto}} </p></div>
             <button class="statsButton" id="visualInfoPromozione{{$i}}">Visualizza Info</button>
         </div>
         <div class="retropromozione" id="retropromozione{{$i}}">
             <div class="invisibile"> {{$counter=0}}
                 @foreach($listaCoupon as $coupon)
-                    @if($coupon->idCoupon==$listaPromozioni[$i]->idCoupon)
+                    @if($coupon->idPromozione==$listaPromozioni[$i]->idPromozione)
                         {{$counter++}}
                     @endif
                 @endforeach</div>

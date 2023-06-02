@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('ragioneSociale');
             $table->text('localizzazione');
             $table->text('nomeAzienda');
-            $table->binary('logo');
+            $table->string('logo');
             $table->text('tipologia');
             $table->longText('descrizioneAzienda');
-            $table->id();
+            $table->bigIncrements('idAzienda');
         });
     }
 

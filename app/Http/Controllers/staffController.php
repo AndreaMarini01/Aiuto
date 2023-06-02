@@ -33,7 +33,7 @@ class staffController extends Controller
 
     public function eliminaStaff(Request $request){
         DB::delete('delete from users where id = ?',[$request->id]);
-        return redirect(route('listaStaff'));
+        return redirect(route('listaUtenti'));
     }
 
     public function editStaff(Request $request)
@@ -61,7 +61,7 @@ class staffController extends Controller
         $data['role']='staff';
 
         User::where('id',$request->id)->update($data);
-        return redirect(route('listaStaff'));
+        return redirect(route('listaUtenti'));
     }
 
     public function creaStaff(Request $request)
@@ -80,7 +80,7 @@ class staffController extends Controller
         $data['role'] = "staff";
         User::create($data);
 
-        return redirect(route('listaStaff'));
+        return redirect(route('listaUtenti'));
 
     }
 

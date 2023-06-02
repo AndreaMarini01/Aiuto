@@ -42,6 +42,7 @@
     </form>
 </center>
 @endforeach
+    <br><br>
 @else
 <center>
     <form method="POST" class="form">

@@ -32,13 +32,6 @@ class loginController extends Controller
     }
     function loginPost(LoginRequest $request)
     {
-        /*$request->validate([
-            'username' => 'required|string|min:8',
-            'password' => 'required|string|min:8',
-        ], [
-            'required' => 'il campo :attribute è necessario',
-            'min' => 'Il campo :attribute deve avere almeno 8 caratteri',
-        ]);*/
 
         $request->authenticate();
 
@@ -89,16 +82,7 @@ class loginController extends Controller
     //function signupPost(Request $request)
     function signupPost(SignUpRequest $request)
     {
-        /*$request->validate([
-            'nome' => 'required',
-            'email'=>'required',
-            'password' => 'required',
-            'telefono' => 'required',
-            'datadinascita' => 'required',
-            'username' => 'required',
-            'cognome' => 'required',
-            'genere' => 'required'
-        ]);*/
+
 
         $data['nome'] = $request->nome;
         $data['email']=$request->email;

@@ -15,7 +15,7 @@
             <div class="immagine_azienda">
                 <center>
                     <!--Da capire come inserire bene l'immagine-->
-                    <img src="https://www.strunkmedia.com/wp-content/uploads/2018/05/bigstock-221516158.jpg" height="400px"width="400px">
+                    <img src={{URL('images/'.$azienda->logo)}} height="200"width="200">
                     <br>
                 </center>
             </div>

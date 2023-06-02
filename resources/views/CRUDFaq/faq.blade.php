@@ -20,25 +20,25 @@
                 <p>{{ $xfaq->risposta }}</p>
 
                 @if(isset(Auth::user()->nome))
-                    @if((Auth::User()->role)=='admin')
+                    @can('isAdmin')
                         <div class="faq-opt" style="float: right; display: inline">
                             <a class="faq-btn" href="{{route('faqedit',['id'=>$xfaq->id], ['option'=>'edit'])}}">Modifica
                                 FAQ</a>&nbsp;
                             <a class="faq-btn" href="{{route('faqdelete',['id'=>$xfaq->id])}}">Elimina
                                 FAQ</a>
                         </div>
-                    @endif
+                    @endcan
                 @endif
             </div>
         @endforeach
     @endif
     @if(isset(Auth::user()->nome))
-        @if((Auth::User()->role)=='admin')
+        @can('isAdmin')
             <center>
                 <a class="faq-btn" href="{{route('faqedit',['id'=>'create'], ['option'=>'create'])}}">Inserisci una nuova FAQ
                 </a>
             </center>
-        @endif
+        @endcan
     @endif
 
 

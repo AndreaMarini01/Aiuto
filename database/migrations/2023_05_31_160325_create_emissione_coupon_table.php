@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('emissione_coupon', function (Blueprint $table) {
-            $table->string('idCoupon');
+            $table->string('idPromozione');
             $table->string('idUtente');
             $table->date('dataEmissione');
-            $table->string('codice');
+            $table->string('codice')->unique();
+            $table->primary(['idPromozione', 'idUtente']);
         });
     }
 

@@ -52,11 +52,11 @@ label {
     font-weight: bold;
 }
 
-input[type="text"], input[type="email"], input[type="tel"], input[type="password"], input[type="date"] {
+input[type="text"]{
     width: 100%;
     padding: 10px;
     font-size: 24px;
-    margin-top: 5px;
+    margin-top: 20px;
     border: 2px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
@@ -104,5 +104,32 @@ input[type="submit"]:hover {
     margin-top: 0px;
 }
 
+.errore {
+    color: #f93d00;
+    font-size: 16px;
+    margin-top: 10px;
+    float: left;
+    position: relative;
+    left:-25px;
 
+}
 
+input[type="date"] {
+    width:60%;
+    height:25px;
+    margin-top: 20px;
+}
+
+select {
+    width:20%;
+    height:35px;
+    margin-top: 20px;
+}
+
+.erroreScadenza {
+    color: #f93d00;
+    font-size: 16px;
+    margin-top: 10px;
+    position: relative;
+
+}

@@ -59,3 +59,8 @@
     border-radius: 10px;
     margin-bottom: 80px;
 }
+
+.navbar-right a.active{
+    background-color: #04AA6D;
+    color: white;
+}

@@ -4,6 +4,8 @@
     margin-top: 40px;
 }
 
+
+
 .staff{
     margin-top: 20px;
     background-color: #27c081;
@@ -32,14 +34,14 @@
     width: 1490px;
     font-size: 100px;
     text-align: center;
-    margin-top: 10px;
+    margin-bottom:20px;
     background-color: #acadaa;
     color: #f2f2f2;
     margin-right: 30px;
     text-decoration: none;
     padding: 14px 16px 30px;
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-top: 50px;
 }
 
 .utente{

@@ -27,6 +27,8 @@
         <hr color="#4CAF50">
     @endfor
 
+
+    <br><br>
     <center><div class="bottone_indietro"><button  onclick="location.href='{{route('profile')}}';">Indietro</button> </div></center>
 
 
