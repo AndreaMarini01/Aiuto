@@ -9,6 +9,7 @@ use App\Models\Azienda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Termwind\Components\Dd;
 
 
 class aziendaController extends Controller
@@ -45,18 +46,28 @@ class aziendaController extends Controller
     public function editAzienda(aziendaRequest $request)
     {
 
-        $logoName = time().'.'.$request->logo->extension();
+        /*$logoAttuale=DB::Table('aziendas')
+            ->select('logo')
+            ->where('idAzienda',$request->idAzienda)->get();*/
+
 
         $data['idAzienda'] = $request->idAzienda;
         $data['ragioneSociale'] = $request->ragioneSociale;
         $data['nomeAzienda'] = $request->nomeAzienda;
         $data['localizzazione'] = $request->localizzazione;
-        $data['logo'] = $logoName;
+        if ($request->logo){
+            $logoName = time().'.'.$request->logo->extension();
+            $data['logo'] = $logoName;
+            $request->logo->move(public_path('images'), $logoName);
+            /*echo $logoAttuale;
+            $this->deleteImage('images'.$logoAttuale[0]['logo']);*/
+        }
+
         $data['tipologia'] = $request->tipologia;
         $data['descrizioneAzienda'] = $request->descrizioneAzienda;
 
         Azienda::where('idAzienda',$data['idAzienda'])->update($data);
-        $request->logo->move(public_path('images'), $logoName);
+
 
         return redirect(route('listaAziende'));
     }
@@ -98,6 +109,15 @@ class aziendaController extends Controller
         $request->logo->move(public_path('images'), $logoName);
 
         return redirect(route('listaAziende'));
+
+    }
+
+    public function deleteImage(string $path){
+        if (file_exists(public_path($path))) {
+            unlink(public_path($path));
+        } else {
+            dd("File doesn't exist");
+        }
 
     }
 }

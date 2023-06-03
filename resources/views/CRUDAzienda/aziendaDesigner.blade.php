@@ -8,35 +8,6 @@
 
 @section('content')
 
-    <script>
-
-        $(function validazioneDatiAzienda() {
-            $('#nomeAzienda').on('keyup', function () {
-                $value = $(this).val();
-                if ($value) {
-                    $('#all-data').hide();
-                    $('#searched-content').show();
-                } else {
-                    $('#all-data').show();
-                    $('#searched-content').hide();
-                }
-                $.ajax({
-                    type: 'GET',
-                    url: '{{route('filtri2')}}',
-                    data: {'ricercaParola': $value},
-                    success: function (data) {
-                        console.log(data);
-                        $('#searched-content').html(data);
-                    },
-                    error: function () {
-                        alert('notFound')
-                    }
-                })
-            })
-        })
-
-    </script>
-
     @if($option == 'edit')
         <h2>Modifica Azienda</h2>
 
@@ -52,7 +23,7 @@
                     <h2>Modifica i dati dell'azienda</h2>
                     <br><br>
                     <label for="nomeAzienda">Nome Azienda: </label>
-                    <input type="text" id="nomeAzienda" name="nomeAzienda" value="{{$a->nomeAzienda}}"><br><br>
+                    <input type="text" id="nomeAzienda" name="nomeAzienda" value="{{$a->nomeAzienda}}">
                     @if ($errors->first('nomeAzienda'))
                         <ul class="errore">
                             @foreach ($errors->get('nomeAzienda') as $message)
@@ -60,8 +31,11 @@
                             @endforeach
                         </ul>
                     @endif
+                    <br><br>
+                    <label for="logo">Logo:</label>
+                    <input type="file" id="logo" name="logo"><br><br>
                     <label for="ragioneSociale">Ragione Sociale:</label>
-                    <input type="text" id="ragioneSociale" name="ragioneSociale" value="{{$a->ragioneSociale}}"><br><br>
+                    <input type="text" id="ragioneSociale" name="ragioneSociale" value="{{$a->ragioneSociale}}">
                     @if ($errors->first('ragioneSociale'))
                         <ul class="errore">
                             @foreach ($errors->get('ragioneSociale') as $message)
@@ -69,8 +43,9 @@
                             @endforeach
                         </ul>
                     @endif
+                    <br><br>
                     <label for="localizzazione">Localizzazione:</label>
-                    <input type="text"  name="localizzazione" value="{{$a->localizzazione}}"><br><br>
+                    <input type="text"  name="localizzazione" value="{{$a->localizzazione}}">
                     @if ($errors->first('localizzazione'))
                         <ul class="errore">
                             @foreach ($errors->get('localizzazione') as $message)
@@ -78,27 +53,27 @@
                             @endforeach
                         </ul>
                     @endif
+                    <br><br>
                     <label for="tipologia">Tipologia Azienda:</label>
-                    <input type="text"  name="tipologia" value="{{$a->tipologia}}"><br><br>
+                    <input type="text"  name="tipologia" value="{{$a->tipologia}}">
                     @if ($errors->first('tipologia'))
-                        <ul class="erroreTipologia2">
+                        <ul class="errore">
                             @foreach ($errors->get('tipologia') as $message)
                                 {{ $message }}
                             @endforeach
                         </ul>
                     @endif
-                    <label for="logo">Logo:</label>
-                    <input type="file"  name="logo" value="{{$a->logo}}"><br><br>
+                    <br><br>
                     <label for="descrizioneAzienda">Descrizione Azienda:</label>
-                    <textarea name="descrizioneAzienda">{{$a->descrizioneAzienda}}</textarea><br><br>
+                    <textarea name="descrizioneAzienda">{{$a->descrizioneAzienda}}</textarea>
                     @if ($errors->first('descrizioneAzienda'))
-                        <ul class="erroreDescrizione2">
+                        <ul class="erroreDescrizione">
                             @foreach ($errors->get('descrizioneAzienda') as $message)
                                 {{ $message }}
                             @endforeach
                         </ul>
                     @endif
-
+                    <br><br>
                     <input type="submit" value="Salva Modifiche" formaction="{{route('saveAzienda', ['idAzienda'=>$a->idAzienda])}}">
                     <input type="submit" value="ELIMINA" formaction="{{route('aziendaDelete',['idAzienda'=>$a->idAzienda])}}">
                     <br><br>
@@ -110,7 +85,7 @@
                 @csrf
                 <center>
                 <label for="nomeAzienda">Nome Azienda: </label>
-                <input type="text" id="nomeAzienda" name="nomeAzienda"><br><br>
+                <input type="text" id="nomeAzienda" name="nomeAzienda">
                 @if ($errors->first('nomeAzienda'))
                     <ul class="errore">
                         @foreach ($errors->get('nomeAzienda') as $message)
@@ -118,8 +93,9 @@
                         @endforeach
                     </ul>
                 @endif
+                    <br><br>
                 <label for="ragioneSociale">Ragione Sociale:</label>
-                <input type="text" id="ragioneSociale" name="ragioneSociale"><br><br>
+                <input type="text" id="ragioneSociale" name="ragioneSociale">
                 @if ($errors->first('ragioneSociale'))
                     <ul class="errore">
                         @foreach ($errors->get('ragioneSociale') as $message)
@@ -127,8 +103,9 @@
                         @endforeach
                     </ul>
                 @endif
+                    <br><br>
                 <label for="localizzazione">Localizzazione:</label>
-                <input type="text" id="localizzazione" name="localizzazione"><br><br>
+                <input type="text" id="localizzazione" name="localizzazione">
                 @if ($errors->first('localizzazione'))
                     <ul class="errore">
                         @foreach ($errors->get('localizzazione') as $message)
@@ -136,17 +113,26 @@
                         @endforeach
                     </ul>
                 @endif
+                    <br><br>
                 <label for="logo">Logo:</label>
                 <input type="file" id="logo" name="logo"><br><br>
+                    @if ($errors->first('logo'))
+                        <ul class="errore">
+                            @foreach ($errors->get('logo') as $message)
+                                {{ $message }}
+                            @endforeach
+                        </ul>
+                    @endif
                 <label for="tipologia">Tipologia di azienda:</label>
-                <input type="text" id="tipologia" name="tipologia"><br><br>
+                <input type="text" id="tipologia" name="tipologia">
                 @if ($errors->first('tipologia'))
-                    <ul class="erroreTipologia">
+                    <ul class="errore">
                         @foreach ($errors->get('tipologia') as $message)
                             {{ $message }}
                         @endforeach
                     </ul>
                 @endif
+                    <br><br>
                 <label for="descrizioneAzienda">Descrizione dell'azienda:</label>
                 <textarea id="descrizioneAzienda" name="descrizioneAzienda"></textarea>
                 @if ($errors->first('descrizioneAzienda'))
