@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\SignUpRequest;
+use App\Http\Requests\profiloRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class profileController extends Controller
@@ -16,20 +20,9 @@ class profileController extends Controller
     public function profilo(){
         return view('Profilo/profilo');
     }
-    public function modificaProfiloPost(Request $request)
+
+    public function modificaProfiloPost(profiloRequest $request)
     {
-
-        $request->validate([
-            'username',
-            'password',
-            'email',
-            'nome',
-            'cognome',
-            'telefono',
-            'datadinascita',
-            'genere'
-        ]);
-
         $data['username'] = $request->username;
         $data['password']=Hash::make($request->password);
         $data['email'] = $request->email;
@@ -38,10 +31,20 @@ class profileController extends Controller
         $data['telefono'] = $request->telefono;
         $data['datadinascita'] = $request->datadinascita;
         $data['genere'] = $request->genere;
-        $data['role']=Auth::user()->role;
+        //$data['role']=Auth::user()->role;
 
+        $listaUser=User::all();
+        $listaUsername=[];
+        foreach ($listaUser as $user){
+            if (Auth::user()->username!=$user->username){
+                array_push($listaUsername,$user->username);
+            }
+        }
+        if (in_array($request->username, $listaUsername)) {
+            return view('Profilo/modificaProfilo', ['erroreUsername' => 'Lo username scelto è già in uso']);
+        }
 
-        $currentUser=Auth::user();
+        Auth::user();
         Auth::user()->username=$data['username'];
         Auth::user()->password=$data['password'];
         Auth::user()->email=$data['email'];

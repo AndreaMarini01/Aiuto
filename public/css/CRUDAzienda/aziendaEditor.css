@@ -110,43 +110,25 @@ textarea{
     margin-top:15px;
 }
 
+
+
 .errore {
     color: #f93d00;
     font-size: 16px;
-    margin-top: 0px;
+    margin-top: 15px;
+    float: left;
     position: relative;
-    right:300px;
+    left:-30px;
+    margin-bottom: 5px;
 
-}
-
-.erroreTipologia{
-    color: #f93d00;
-    font-size: 16px;
-    margin-top: 0px;
-    position: relative;
-    right:315px;
 }
 
 .erroreDescrizione{
     color: #f93d00;
     font-size: 16px;
-    margin-top: 0px;
+    float: left;
     position: relative;
-    right:280px;
-}
-
-.erroreTipologia2{
-    color: #f93d00;
-    font-size: 16px;
-    margin-top: 0px;
-    position: relative;
-    right:310px;
-}
-
-.erroreDescrizione2{
-    color: #f93d00;
-    font-size: 16px;
-    position: relative;
-    right:280px;
-    margin-top: -15px;
+    left:-30px;
+    margin-bottom: 5px;
+    margin-top: 8px;
 }

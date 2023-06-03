@@ -40,6 +40,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasRole('staff');
         });
 
+        Gate::define('isUserOrisStaff', function ($user) {
+            return $user->hasRole(['user', 'staff']);
+        });
+
         Gate::define('show-discount', function ($user) {
             return $user->hasRole(['user', 'admin']);
         });

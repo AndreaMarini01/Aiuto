@@ -37,8 +37,6 @@ Route::post('/logout', [loginController::class, 'logout'])->name('logout');
 
 //Rotta per i filtri
 Route::get('/listaPromozioni/filtered', [filterController::class, 'filter'])->name('filtri');
-Route::get('/listaPromozioni/filtered2', [filterController::class, 'filter2'])->name('filtri2');
-Route::get('/listaPromozioni/filtered3', [filterController::class, 'filter3'])->name('filtri3');
 
 
 //Rotte per il CRUD delle promozioni
@@ -59,11 +57,13 @@ Route::get('/modificaPromozione', [promozioniController::class, 'modificaPromozi
 //Rotte per il profilo
 Route::get('/profile', [profileController::class, 'profilo'])->name('profile');
 Route::get('/modificaProfilo', [profileController::class, 'modificaProfilo'])->name('modificaProfilo')
-->middleware('can:isUser');
+   ->middleware('can:isUserOrisStaff');
+/*Route::get('/modificaProfilo', [profileController::class, 'modificaProfilo'])->name('modificaProfilo')
+    ->middleware('can:isStaff');*/
 Route::post('/modificaProfilo',[profileController::class, 'modificaProfiloPost'])->name('modificaProfiloPost');
 
 //Rotte per il CRUD delle aziende
-Route::get('/info', [aziendaController::class, 'listaAziende'])->name('listaAziende'); //Lista delle Aziende
+Route::get('/listaAziende', [aziendaController::class, 'listaAziende'])->name('listaAziende'); //Lista delle Aziende
 Route::get('/azienda', [aziendaController::class, 'visualAzienda'])->name('azienda'); //Visualizzazione Azienda Singola
 #Route::post('/aziendaDiego', [aziendaController::class, 'visualAzienda'])->name('aziendaDiego');
 Route::get('/aziendaCreator', [aziendaController::class, 'aziendaCreator'])->name('aziendaCreator')
@@ -93,6 +93,7 @@ Route::get('/salvaCoupon', [promozioniController::class, 'salvaCoupon'])->name('
     ->middleware('can:isUser');
 Route::get('/couponSalvati', [promozioniController::class, 'couponSalvati'])->name('couponSalvati')
     ->middleware('can:isUser');
+
 
 //CRUDStaff
 Route::get('/listaStaff', [staffController::class, 'listaStaff'])->name('listaUtenti')

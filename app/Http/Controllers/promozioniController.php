@@ -130,7 +130,16 @@ class promozioniController extends Controller
         }
         $data['codice']=$randomString;
         emissione_coupon::create($data);
-        return redirect(route('listaPromozioni'));
+        $listaId=DB::Table('emissione_coupon')
+            ->where('idUtente', Auth::user()->id)->get();
+        $Coupons=DB::Table('promozione')->where('idPromozione', $request->idPromozione)->get();
+        $codice=null;
+        foreach ($listaId as $coupon){
+            if ($coupon->idPromozione==$request->idPromozione){
+                $codice=$coupon->codice;
+            }
+        }
+        return view('couponSalvati',['promozione'=>$Coupons],['codice'=>$codice]);
     }
 
     public function couponSalvati()
@@ -153,4 +162,17 @@ class promozioniController extends Controller
         return view('couponSalvati',['listaCoupon'=>$listaCoupon],['listaCodici'=>$listaCodici]);
     }
 
+
+    public function couponSingolo(Request $request){
+        $listaId=DB::Table('emissione_coupon')
+            ->where('idUtente', Auth::user()->id)->get();
+        $Coupons=DB::Table('promozione')->where('idPromozione', $request->idPromozione)->get();
+        $codice=null;
+        foreach ($listaId as $coupon){
+            if ($coupon->idPromozione==$request->idPromozione){
+                $codice=$coupon->codice;
+            }
+        }
+        return view('couponSalvati',['promozione'=>$Coupons],['codice'=>$codice]);
+    }
 }

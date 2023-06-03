@@ -31,10 +31,11 @@
     </script>
 
     <script>
-        $(function ricercaFiltribyName() {
-            $('#ricercaAzienda').on('keyup', function () {
-                $value = $(this).val();
-                if ($value) {
+        $(function ricercaFiltribyNameAndWords() {
+            $('#ricercaParola').on('keyup',function () {
+                $value1 = $('#ricercaAzienda').val();
+                $value2 = $('#ricercaParola').val();
+                if ($value1 || $value2) {
                     $('#all-data').hide();
                     $('#searched-content').show();
                 } else {
@@ -44,22 +45,17 @@
                 $.ajax({
                     type: 'GET',
                     url: '{{route('filtri')}}',
-                    data: {'ricercaAzienda': $value},
+                    data: {'ricercaParola': $value2, 'ricercaAzienda': $value1},
                     success: function (data) {
                         console.log(data);
                         $('#searched-content').html(data);
-                    },
-                    error: function () {
-                        alert('notFound')
                     }
                 })
             })
-        })
-
-        $(function ricercaFiltribyWords() {
-            $('#ricercaParola').on('keyup', function () {
-                $value = $(this).val();
-                if ($value) {
+            $('#ricercaAzienda').on('keyup',function () {
+                $value1 = $('#ricercaAzienda').val();
+                $value2 = $('#ricercaParola').val();
+                if ($value1 || $value2) {
                     $('#all-data').hide();
                     $('#searched-content').show();
                 } else {
@@ -68,42 +64,14 @@
                 }
                 $.ajax({
                     type: 'GET',
-                    url: '{{route('filtri2')}}',
-                    data: {'ricercaParola': $value},
+                    url: '{{route('filtri')}}',
+                    data: {'ricercaParola': $value2, 'ricercaAzienda': $value1},
                     success: function (data) {
                         console.log(data);
                         $('#searched-content').html(data);
-                    },
-                    error: function () {
-                        alert('notFound')
                     }
                 })
             })
-        })
-
-        $(function ricercaFiltribyNameAndWords() {
-            $value1 = $('#ricercaAzienda').val();
-            $value2 = $('#ricercaParolaa').val();
-            if ($value1 && $value2) {
-                $('#all-data').hide();
-                $('#searched-content').show();
-            } else {
-                $('#all-data').show();
-                $('#searched-content').hide();
-            }
-            $.ajax({
-                type: 'GET',
-                url: '{{route('filtri3')}}',
-                data: {'ricercaParola': $value, 'ricercaAzienda': $value},
-                success: function (data) {
-                    console.log(data);
-                    $('#searched-content').html(data);
-                },
-                error: function () {
-                    alert('notFound')
-                }
-            })
-
         })
 
     </script>
@@ -129,7 +97,7 @@
             <div class="promozione">
                 <div><p id="nomePromozione"> Nome offerta: {{$promozione->nomePromozione}} </p></div>
                 <div><p id="oggetto"> Oggetto offerta: {{$promozione->oggetto}} </p></div>
-                <!-- Da mettere il middleware in modo che sogli gli utenti staff possano vederlo -->
+
                 @can('isStaff')
                     <div>
                         <div class="bottoni1"><input type="submit" value="MODIFICA" onclick="location.href='{{route('modificaPromozione', ['idPromozione'=>$promozione->idPromozione])}}';">
@@ -154,6 +122,7 @@
 
 
     <div id="searched-content" class="searched-content"></div>
+    <br><br>
 
     <!-- Da mettere il middleware in modo che sogli gli utenti staff possano vederlo -->
     @can('isStaff')
@@ -161,7 +130,7 @@
             <button type="submit" onclick="location.href='{{route('promozioneCreator')}}';">+</button>
         </div>
     @endcan
-    <br>
+    <br><br>
 @endsection
 
 

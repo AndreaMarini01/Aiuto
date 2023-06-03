@@ -67,8 +67,6 @@ class staffController extends Controller
     public function creaStaff(Request $request)
     {
 
-
-
         $data['username'] = $request->username;
         $data['password']=Hash::make($request->password);
         $data['email'] = $request->email;

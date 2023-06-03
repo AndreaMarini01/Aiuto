@@ -24,9 +24,9 @@ class SignUpRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|string|min:8',
+            'username' => 'required|string|min:8|unique:App\Models\User,username',
             'password' => 'required|string|confirmed|min:8',
-            'email'=> 'required|string|email',
+            'email'=> 'required|string|email|unique:App\Models\User,email',
             'nome' => 'required',
             'cognome'=>'required',
             'telefono'=>'required|min:10|max:10',
@@ -44,7 +44,8 @@ class SignUpRequest extends FormRequest
             'telefono.min' => 'Numero di telefono non valido',
             'telefono.max' => 'Numero di telefono non valido',
             'email'=> 'E-mail non valida',
-            'confirmed' => 'Le password inserite non coincidono'
+            'confirmed' => 'Le password inserite non coincidono',
+            'unique'=> 'Questo valore è già occupato da un altro utente'
         ];
     }
 }

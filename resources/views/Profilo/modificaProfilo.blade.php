@@ -11,17 +11,67 @@
                 @csrf
                 <h2>Modifica i tuoi dati personali</h2>
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" value="{{$utente['username']}}"><br><br>
+                <input type="text" id="username" name="username" value="{{$utente['username']}}">
+                @if(isset($erroreUsername))
+                    <ul class="errore">{{$erroreUsername}}</ul>
+                @endif
+                @if ($errors->first('username'))
+                    <ul class="errore">
+                        @foreach ($errors->get('username') as $message)
+                            {{ $message }}
+                        @endforeach
+                    </ul>
+                @endif
+                    <br><br>
+
                 <label for="username">Password:</label>
-                <input type="text" id="password" name="password"><br><br>
+                <input type="text" id="password" name="password" >
+                @if ($errors->first('password'))
+                    <ul class="errore">
+                        @foreach ($errors->get('password') as $message)
+                            {{ $message }}
+                        @endforeach
+                    </ul>
+                @endif<br><br>
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="{{$utente['email']}}"><br><br>
+                <input type="email" id="email" name="email" value="{{$utente['email']}}">
+                @if($utente->email != $utente['email'])
+                @if ($errors->first('email'))
+                    <ul class="errore">
+                        @foreach ($errors->get('email') as $message)
+                            {{ $message }}
+                        @endforeach
+                    </ul>
+                @endif
+                @endif
+                <br><br>
                 <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" value=" {{$utente['nome']}}"><br><br>
+                <input type="text" id="nome" name="nome" value=" {{$utente['nome']}}">
+                @if ($errors->first('nome'))
+                    <ul class="errore">
+                        @foreach ($errors->get('nome') as $message)
+                            {{ $message }}
+                        @endforeach
+                    </ul>
+                @endif<br><br>
                 <label for="cognome">Cognome:</label>
-                <input type="text" id="cognome" name="cognome" value="{{$utente['cognome']}}"><br><br>
+                <input type="text" id="cognome" name="cognome" value="{{$utente['cognome']}}">
+                @if ($errors->first('cognome'))
+                    <ul class="errore">
+                        @foreach ($errors->get('cognome') as $message)
+                            {{ $message }}
+                        @endforeach
+                    </ul>
+                @endif<br><br>
                 <label for="telefono">Telefono:</label>
-                <input type="tel" id="telefono" name="telefono" value="{{$utente['telefono']}}"><br><br>
+                <input type="tel" id="telefono" name="telefono" value="{{$utente['telefono']}}">
+                @if ($errors->first('telefono'))
+                    <ul class="errore">
+                        @foreach ($errors->get('telefono') as $message)
+                            {{ $message }}
+                        @endforeach
+                    </ul>
+                @endif<br><br>
                 <label for="datadinascita">Data di nascita:</label>
                 <input type="date" id="datadinascita" name="datadinascita" value="{{$utente['datadinascita']}}"><br><br>
                 <label for="genere">Genere:</label>
