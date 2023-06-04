@@ -4,6 +4,7 @@
 
 <link rel="stylesheet" type="text/css" href="{{URL('css\CRUDStaff\staffDesigner.css') }}">
 @section('content')
+
 @if($option == 'edit')
 <h2>Modifica Staff</h2>
 
@@ -18,17 +19,70 @@
     <form method="POST" class="form">
         @csrf
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" value="{{$membro->username}}"><br><br>
+        <input type="text" id="username" name="username" value="{{$membro->username}}">
+        @if(isset($erroreUsername))
+            <ul class="errore">{{$erroreUsername}}</ul>
+        @endif
+        @if ($errors->first('username'))
+            <ul class="errore">
+                @foreach ($errors->get('username') as $message)
+                    {{ $message }}
+                @endforeach
+            </ul>
+        @endif
+        <br><br>
         <label for="password">Password:</label>
-        <input type="text" id="password" name="password"><br><br>
+        <input type="text" id="password" name="password">
+        @if ($errors->first('password'))
+            <ul class="errore">
+                @foreach ($errors->get('password') as $message)
+                    {{ $message }}
+                @endforeach
+            </ul>
+        @endif<br><br>
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="{{$membro->email}}"><br><br>
+        <input type="email" id="email" name="email" value="{{$membro->email}}">
+        @if(isset($erroreEmail))
+            <ul class="errore">{{$erroreEmail}}</ul>
+        @endif
+        @if ($errors->first('email'))
+            <ul class="errore">
+                @foreach ($errors->get('email') as $message)
+                    {{ $message }}
+                @endforeach
+            </ul>
+        @endif
+        <br><br>
         <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" value=" {{$membro->nome}}"><br><br>
+        <input type="text" id="nome" name="nome" value=" {{$membro->nome}}">
+        @if ($errors->first('nome'))
+            <ul class="errore">
+                @foreach ($errors->get('nome') as $message)
+                    {{ $message }}
+                @endforeach
+            </ul>
+        @endif
+        <br><br>
         <label for="cognome">Cognome:</label>
-        <input type="text" id="cognome" name="cognome" value="{{$membro->cognome}}"><br><br>
+        <input type="text" id="cognome" name="cognome" value="{{$membro->cognome}}">
+        @if ($errors->first('cognome'))
+            <ul class="errore">
+                @foreach ($errors->get('cognome') as $message)
+                    {{ $message }}
+                @endforeach
+            </ul>
+        @endif
+        <br><br>
         <label for="telefono">Telefono:</label>
-        <input type="tel" id="telefono" name="telefono" value="{{$membro->telefono}}"><br><br>
+        <input type="tel" id="telefono" name="telefono" value="{{$membro->telefono}}">
+        @if ($errors->first('telefono'))
+            <ul class="errore">
+                @foreach ($errors->get('telefono') as $message)
+                    {{ $message }}
+                @endforeach
+            </ul>
+        @endif
+        <br><br>
         <label for="datadinascita">Data di nascita:</label>
         <input type="date" id="datadinascita" name="datadinascita" value="{{$membro->datadinascita}}"><br><br>
         <label for="genere">Genere:</label>
@@ -48,17 +102,71 @@
     <form method="POST" class="form">
         @csrf
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username"><br><br>
+        <input type="text" id="username" name="username">
+        @if(isset($erroreUsernameStaff))
+            <ul class="errore">{{$erroreUsernameStaff}}</ul>
+        @endif
+        @if ($errors->first('username'))
+            <ul class="errore">
+                @foreach ($errors->get('username') as $message)
+                    {{ $message }}
+                @endforeach
+            </ul>
+        @endif
+        <br><br>
         <label for="password">Password:</label>
-        <input type="text" id="password" name="password"><br><br>
+        <input type="text" id="password" name="password">
+        @if ($errors->first('password'))
+            <ul class="errore">
+                @foreach ($errors->get('password') as $message)
+                    {{ $message }}
+                @endforeach
+            </ul>
+        @endif
+        <br><br>
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email"><br><br>
+        <input type="email" id="email" name="email">
+        @if(isset($erroreEmailStaff))
+            <ul class="errore">{{$erroreEmailStaff}}</ul>
+        @endif
+        @if ($errors->first('email'))
+            <ul class="errore">
+                @foreach ($errors->get('email') as $message)
+                    {{ $message }}
+                @endforeach
+            </ul>
+        @endif
+        <br><br>
         <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome"><br><br>
+        <input type="text" id="nome" name="nome">
+        @if ($errors->first('nome'))
+            <ul class="errore">
+                @foreach ($errors->get('nome') as $message)
+                    {{ $message }}
+                @endforeach
+            </ul>
+        @endif
+        <br><br>
         <label for="cognome">Cognome:</label>
-        <input type="text" id="cognome" name="cognome"><br><br>
+        <input type="text" id="cognome" name="cognome">
+        @if ($errors->first('cognome'))
+            <ul class="errore">
+                @foreach ($errors->get('cognome') as $message)
+                    {{ $message }}
+                @endforeach
+            </ul>
+        @endif
+        <br><br>
         <label for="telefono">Telefono:</label>
-        <input type="tel" id="telefono" name="telefono"><br><br>
+        <input type="tel" id="telefono" name="telefono">
+        @if ($errors->first('telefono'))
+            <ul class="errore">
+                @foreach ($errors->get('telefono') as $message)
+                    {{ $message }}
+                @endforeach
+            </ul>
+        @endif
+        <br><br>
         <label for="datadinascita">Data di nascita:</label>
         <input type="date" id="datadinascita" name="datadinascita"><br><br>
         <label for="genere">Genere:</label>
