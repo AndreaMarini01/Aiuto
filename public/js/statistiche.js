@@ -1,44 +1,51 @@
-/*
-<script>
-    $(document).ready(function() {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
+$(function retroPromozioni(){
+    $('button').click(function (){
+        var buttonId=$(this).attr('id');
+        var buttonNumber = buttonId.replace('visualInfoPromozione','');
+        mostraRetroPromozione(buttonNumber)
     });
-    $("#ricercaAzienda").keyup(function (e) {
-    e.preventDefault();
-    let ricercaAzienda = $("input[name=ricercaAzienda]").val();
-    let CSRF_TOKEN = '{{ csrf_token() }}';
-    if (ricercaAzienda != '') {
-    $.ajax({
-    type: 'POST',
-    url: "{{ route('catalogoPost') }}",
-    data: {name: ricercaAzienda, _token: CSRF_TOKEN},
-    success: function (data) {
-    let result_tag = "";
-    $.each(JSON.parse(data), function (item) {
-    result_tag += "<div>" +
-    "<p>" + item.get('id') + "</p>" +
-    "<p>" + item.nomeAzienda + "</p>" +
-    "<p>" + item.ragioneSociale + "</p>" +
-    "<p>" + item.tipologia + "</p>" +
-    "<p>" + item.logo + "</p>" +
-    "<p>" + item.tipologia + "</p>" +
-    "<p>" + item.localizzazione + "</p>" +
-    "</div>";
 });
-    $('#container').html(result_tag);
+
+$(function avantiPromozioni(){
+    $('button').click(function (){
+        var buttonId=$(this).attr('id');
+        var buttonNumber = buttonId.replace('retro_promozione_button','');
+        mostraAvantiPromozione(buttonNumber)
+    });
+});
+
+$(function retroUtenti(){
+    $('button').click(function (){
+        var buttonId=$(this).attr('id');
+        var buttonNumber = buttonId.replace('visualInfoUtente','');
+        mostraRetroUtente (buttonNumber)
+    });
+});
+
+$(function avantiUtenti(){
+    $('button').click(function (){
+        var buttonId=$(this).attr('id');
+        var buttonNumber = buttonId.replace('retro_utente_button','');
+        mostraAvantiUtente(buttonNumber)
+    });
+});
+
+function mostraRetroPromozione (buttonNumber){
+    $("#promozione"+buttonNumber).hide();
+    $("#retropromozione"+buttonNumber).show();
 }
-});
-} else {
-    $('#container').html('');
+
+function mostraAvantiPromozione(buttonNumber){
+    $("#promozione"+buttonNumber).show();
+    $("#retropromozione"+buttonNumber).hide();
 }
-});
-});
-</script>
-*/
 
+function mostraRetroUtente (buttonNumber){
+    $("#utente"+buttonNumber).hide();
+    $("#retroutente"+buttonNumber).show();
+}
 
-
-
+function mostraAvantiUtente(buttonNumber){
+    $("#utente"+buttonNumber).show();
+    $("#retroutente"+buttonNumber).hide();
+}

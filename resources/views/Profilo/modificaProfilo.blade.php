@@ -12,9 +12,6 @@
                 <h2>Modifica i tuoi dati personali</h2>
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" value="{{$utente['username']}}">
-                @if(isset($erroreUsername))
-                    <ul class="errore">{{$erroreUsername}}</ul>
-                @endif
                 @if ($errors->first('username'))
                     <ul class="errore">
                         @foreach ($errors->get('username') as $message)
@@ -35,14 +32,12 @@
                 @endif<br><br>
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" value="{{$utente['email']}}">
-                @if($utente->email != $utente['email'])
                 @if ($errors->first('email'))
                     <ul class="errore">
                         @foreach ($errors->get('email') as $message)
                             {{ $message }}
                         @endforeach
                     </ul>
-                @endif
                 @endif
                 <br><br>
                 <label for="nome">Nome:</label>
@@ -80,6 +75,7 @@
                     <option value="femmina">Femmina</option>
                     <option value="altro">Altro</option>
                 </select><br><br>
+                <input type="hidden" id="user_id" name="user_id" value="{{$utente['id']}}">
                 <input type="submit" value="Salva Modifiche">
             </form></center>
 <br><br>

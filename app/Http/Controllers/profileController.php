@@ -31,18 +31,6 @@ class profileController extends Controller
         $data['telefono'] = $request->telefono;
         $data['datadinascita'] = $request->datadinascita;
         $data['genere'] = $request->genere;
-        //$data['role']=Auth::user()->role;
-
-        $listaUser=User::all();
-        $listaUsername=[];
-        foreach ($listaUser as $user){
-            if (Auth::user()->username!=$user->username){
-                array_push($listaUsername,$user->username);
-            }
-        }
-        if (in_array($request->username, $listaUsername)) {
-            return view('Profilo/modificaProfilo', ['erroreUsername' => 'Lo username scelto è già in uso']);
-        }
 
         Auth::user();
         Auth::user()->username=$data['username'];

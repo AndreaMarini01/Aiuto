@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\profiloRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use Symfony\Component\Console\Input\Input;
 
 class staffController extends Controller
 {
@@ -36,20 +40,8 @@ class staffController extends Controller
         return redirect(route('listaUtenti'));
     }
 
-    public function editStaff(Request $request)
+    public function editStaff(profiloRequest $request)
     {
-
-        $request->validate([
-            'username',
-            'password',
-            'email',
-            'nome',
-            'cognome',
-            'telefono',
-            'datadinascita',
-            'genere'
-        ]);
-
         $data['username'] = $request->username;
         $data['password']=Hash::make($request->password);
         $data['email'] = $request->email;
@@ -64,9 +56,8 @@ class staffController extends Controller
         return redirect(route('listaUtenti'));
     }
 
-    public function creaStaff(Request $request)
+    public function creaStaff(profiloRequest $request)
     {
-
         $data['username'] = $request->username;
         $data['password']=Hash::make($request->password);
         $data['email'] = $request->email;

@@ -7,7 +7,6 @@
 @endsection
 
 @section('content')
-
     @if($option == 'edit')
         <h2>Modifica Azienda</h2>
 
@@ -34,6 +33,8 @@
                     <br><br>
                     <label for="logo">Logo:</label>
                     <input type="file" id="logo" name="logo"><br><br>
+
+
                     <label for="ragioneSociale">Ragione Sociale:</label>
                     <input type="text" id="ragioneSociale" name="ragioneSociale" value="{{$a->ragioneSociale}}">
                     @if ($errors->first('ragioneSociale'))
@@ -74,6 +75,7 @@
                         </ul>
                     @endif
                     <br><br>
+                    <input type="hidden" id="azienda_id" name="azienda_id" value="{{$a->idAzienda}}">
                     <input type="submit" value="Salva Modifiche" formaction="{{route('saveAzienda', ['idAzienda'=>$a->idAzienda])}}">
                     <input type="submit" value="ELIMINA" formaction="{{route('aziendaDelete',['idAzienda'=>$a->idAzienda])}}">
                     <br><br>
@@ -86,6 +88,9 @@
                 <center>
                 <label for="nomeAzienda">Nome Azienda: </label>
                 <input type="text" id="nomeAzienda" name="nomeAzienda">
+                    @if(isset($erroreNomeAzienda))
+                        <ul class="errore">{{$erroreNomeAzienda}}</ul>
+                    @endif
                 @if ($errors->first('nomeAzienda'))
                     <ul class="errore">
                         @foreach ($errors->get('nomeAzienda') as $message)
@@ -122,6 +127,7 @@
                                 {{ $message }}
                             @endforeach
                         </ul>
+                        <br><br>
                     @endif
                 <label for="tipologia">Tipologia di azienda:</label>
                 <input type="text" id="tipologia" name="tipologia">

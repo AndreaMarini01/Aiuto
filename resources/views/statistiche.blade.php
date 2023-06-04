@@ -8,68 +8,15 @@
 @section('content')
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+    <script src="{{asset('js/statistiche.js')}}"></script>
 
-        $(function retroPromozioni(){
-            $('button').click(function (){
-                var buttonId=$(this).attr('id');
-                var buttonNumber = buttonId.replace('visualInfoPromozione','');
-                mostraRetroPromozione(buttonNumber)
-            });
-        });
-
-        $(function avantiPromozioni(){
-            $('button').click(function (){
-                var buttonId=$(this).attr('id');
-                var buttonNumber = buttonId.replace('retro_promozione_button','');
-                mostraAvantiPromozione(buttonNumber)
-            });
-        });
-
-        $(function retroUtenti(){
-            $('button').click(function (){
-                var buttonId=$(this).attr('id');
-                var buttonNumber = buttonId.replace('visualInfoUtente','');
-                mostraRetroUtente (buttonNumber)
-            });
-        });
-
-        $(function avantiUtenti(){
-            $('button').click(function (){
-                var buttonId=$(this).attr('id');
-                var buttonNumber = buttonId.replace('retro_utente_button','');
-                mostraAvantiUtente(buttonNumber)
-            });
-        });
-
-        function mostraRetroPromozione (buttonNumber){
-            $("#promozione"+buttonNumber).hide();
-            $("#retropromozione"+buttonNumber).show();
-        }
-
-        function mostraAvantiPromozione(buttonNumber){
-            $("#promozione"+buttonNumber).show();
-            $("#retropromozione"+buttonNumber).hide();
-        }
-
-        function mostraRetroUtente (buttonNumber){
-            $("#utente"+buttonNumber).hide();
-            $("#retroutente"+buttonNumber).show();
-        }
-
-        function mostraAvantiUtente(buttonNumber){
-            $("#utente"+buttonNumber).show();
-            $("#retroutente"+buttonNumber).hide();
-        }
-
-    </script>
     <div class="invisibile">{{$listaPromozioni=$lista['listaPromozioni']}}
         {{$listaUtenti=$lista['listaUtenti']}}}
         {{$listaCoupon=$lista['listaCoupon']}}</div>
 
-    <br><br>
+
     <div class="Titolo"><h1>Statistiche</h1></div>
-    <div class="numeroCoupon">Numero totale di coupon emessi: {{sizeof($listaPromozioni)}}</div>
+    <div class="numeroCoupon">Numero totale di coupon emessi: {{sizeof($listaCoupon)}}</div>
     <hr>
     <div class="tipoStatistica">Seleziona il coupon di cui vuoi sapere le informazioni: </div>
     @for($i=0;$i<=sizeof($listaPromozioni)-1;$i++)
@@ -92,6 +39,7 @@
     <hr>
     <div class="tipoStatistica">Seleziona l'utente di cui vuoi sapere le informazioni: </div>
     @for($j=0;$j<=sizeof($listaUtenti)-1;$j++)
+        <div class="invisibile">{{$counter=0}}</div>
         <div class="utente" id="utente{{$j}}" >
             <div><p id="username"> Nome utente: {{$listaUtenti[$j]->username}} </p></div>
             <div><p id="email"> Email: {{$listaUtenti[$j]->email}} </p></div>
@@ -109,6 +57,7 @@
         </div>
 
     @endfor
+    <br><br><br><br><br><br>
 
 
 

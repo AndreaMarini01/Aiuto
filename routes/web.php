@@ -96,7 +96,7 @@ Route::get('/couponSalvati', [promozioniController::class, 'couponSalvati'])->na
 
 
 //CRUDStaff
-Route::get('/listaStaff', [staffController::class, 'listaStaff'])->name('listaUtenti')
+Route::get('/listaUtenti', [staffController::class, 'listaStaff'])->name('listaUtenti')
     ->middleware('can:isAdmin');
 Route::get('/eliminaStaff', [staffController::class, 'eliminaStaff'])->name('eliminaStaff')
     ->middleware('can:isAdmin');

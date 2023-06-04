@@ -17,7 +17,7 @@ class promozioneRequest extends FormRequest
             'nomePromozione'=>'required',
             'oggetto'=>'required',
             'modalità'=>'required',
-            'scontistica'=>'required|integer',
+            'scontistica'=>'required|integer|min:1|max:100',
             'luogoFruizione'=>'required',
             'dataScadenza'=>'required',
         ];
@@ -26,7 +26,9 @@ class promozioneRequest extends FormRequest
     public function messages (){
         return[
             'required'=>'il campo :attribute è necessario',
-            'integer'=>'il valore inserito deve essere un numero'
+            'integer'=>'il valore inserito deve essere un numero',
+            'min'=>'il valore inserito non è valido',
+            'max'=>'il valore inserito non è valido'
         ];
     }
 }

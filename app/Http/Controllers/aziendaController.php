@@ -46,11 +46,6 @@ class aziendaController extends Controller
     public function editAzienda(aziendaRequest $request)
     {
 
-        /*$logoAttuale=DB::Table('aziendas')
-            ->select('logo')
-            ->where('idAzienda',$request->idAzienda)->get();*/
-
-
         $data['idAzienda'] = $request->idAzienda;
         $data['ragioneSociale'] = $request->ragioneSociale;
         $data['nomeAzienda'] = $request->nomeAzienda;
@@ -59,10 +54,7 @@ class aziendaController extends Controller
             $logoName = time().'.'.$request->logo->extension();
             $data['logo'] = $logoName;
             $request->logo->move(public_path('images'), $logoName);
-            /*echo $logoAttuale;
-            $this->deleteImage('images'.$logoAttuale[0]['logo']);*/
         }
-
         $data['tipologia'] = $request->tipologia;
         $data['descrizioneAzienda'] = $request->descrizioneAzienda;
 
@@ -71,29 +63,6 @@ class aziendaController extends Controller
 
         return redirect(route('listaAziende'));
     }
-
-    /*public function creaAzienda(Request $request)
-    {
-        $validator = Validator::make($request->all(),[
-            'username' ,
-            'password' ,
-        ]);
-
-        $logoName = time().'.'.$request->logo->extension();
-        $data['ragioneSociale'] = $request->ragioneSociale;
-        $data['localizzazione'] = $request->localizzazione;
-        $data['nomeAzienda'] = $request->nomeAzienda;
-        $data['logo'] = $logoName;
-        $data['tipologia'] = $request->tipologia;
-        $data['descrizioneAzienda'] = $request->descrizioneAzienda;
-        Azienda::create($data);
-
-        $request->logo->move(public_path('images'), $logoName);
-
-        return redirect(route('listaAziende'));
-
-    }*/
-
 
     public function creaAzienda(aziendaRequest $request)
     {
@@ -112,12 +81,7 @@ class aziendaController extends Controller
 
     }
 
-    public function deleteImage(string $path){
-        if (file_exists(public_path($path))) {
-            unlink(public_path($path));
-        } else {
-            dd("File doesn't exist");
-        }
 
-    }
+
+
 }

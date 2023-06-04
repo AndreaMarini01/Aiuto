@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class aziendaRequest extends FormRequest
 {
@@ -13,18 +14,21 @@ class aziendaRequest extends FormRequest
     }
 
     public function rules(){
+        $azienda_id = $this->request->get('azienda_id');
         return[
-            'nomeAzienda'=>'required|string',
+            'nomeAzienda'=>['required','string',Rule::unique('aziendas', 'nomeAzienda')->ignore($azienda_id)],
             'localizzazione'=>'required',
             'tipologia'=>'required',
             'descrizioneAzienda'=>'required',
             'ragioneSociale'=>'required',
+            'logo'=>'required'
         ];
     }
 
     public function messages (){
         return[
-          'required' => 'il campo :attribute è necessario'
+          'required' => 'il campo :attribute è necessario',
+            'unique' => "Esiste già un'azienda con questo nome"
         ];
     }
 }

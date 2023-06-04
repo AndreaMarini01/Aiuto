@@ -7,7 +7,6 @@
 
 @if($option == 'edit')
 <h2>Modifica Staff</h2>
-
 @endif
 @if($option == 'create')
 <h2>Crea nuovo membro dello staff</h2>
@@ -20,9 +19,6 @@
         @csrf
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" value="{{$membro->username}}">
-        @if(isset($erroreUsername))
-            <ul class="errore">{{$erroreUsername}}</ul>
-        @endif
         @if ($errors->first('username'))
             <ul class="errore">
                 @foreach ($errors->get('username') as $message)
@@ -42,9 +38,6 @@
         @endif<br><br>
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" value="{{$membro->email}}">
-        @if(isset($erroreEmail))
-            <ul class="errore">{{$erroreEmail}}</ul>
-        @endif
         @if ($errors->first('email'))
             <ul class="errore">
                 @foreach ($errors->get('email') as $message)
@@ -91,6 +84,7 @@
             <option value="femmina">Femmina</option>
             <option value="altro">Altro</option>
         </select><br><br>
+        <input type="hidden" id="user_id" name="user_id" value="{{$membro->id}}">
         <input type="submit" value="Salva Modifiche" formaction="{{route('editStaff',['id'=>$membro->id])}}">
         <input type="submit" value="Elimina" formaction="{{route('eliminaStaff',['id'=>$membro->id])}}">
     </form>
@@ -103,9 +97,6 @@
         @csrf
         <label for="username">Username:</label>
         <input type="text" id="username" name="username">
-        @if(isset($erroreUsernameStaff))
-            <ul class="errore">{{$erroreUsernameStaff}}</ul>
-        @endif
         @if ($errors->first('username'))
             <ul class="errore">
                 @foreach ($errors->get('username') as $message)
@@ -126,9 +117,6 @@
         <br><br>
         <label for="email">Email:</label>
         <input type="email" id="email" name="email">
-        @if(isset($erroreEmailStaff))
-            <ul class="errore">{{$erroreEmailStaff}}</ul>
-        @endif
         @if ($errors->first('email'))
             <ul class="errore">
                 @foreach ($errors->get('email') as $message)
@@ -175,6 +163,7 @@
             <option value="femmina">Femmina</option>
             <option value="altro">Altro</option>
         </select><br><br>
+
         <input type="submit" value="Salva Modifiche" formaction="{{route('creaStaff')}}">
     </form>
 </center>
