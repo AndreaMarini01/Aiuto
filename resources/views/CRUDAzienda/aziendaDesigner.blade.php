@@ -94,9 +94,6 @@
                 <center>
                 <label for="nomeAzienda">Nome Azienda: </label>
                 <input type="text" id="nomeAzienda" name="nomeAzienda">
-                    @if(isset($erroreNomeAzienda))
-                        <ul class="errore">{{$erroreNomeAzienda}}</ul>
-                    @endif
                 @if ($errors->first('nomeAzienda'))
                     <ul class="errore">
                         @foreach ($errors->get('nomeAzienda') as $message)
@@ -104,7 +101,7 @@
                         @endforeach
                     </ul>
                 @endif
-                    <br><br>
+                    <br><br><br>
                 <label for="ragioneSociale">Ragione Sociale:</label>
                 <input type="text" id="ragioneSociale" name="ragioneSociale">
                 @if ($errors->first('ragioneSociale'))
@@ -114,7 +111,7 @@
                         @endforeach
                     </ul>
                 @endif
-                    <br><br>
+                    <br><br><br>
                 <label for="localizzazione">Localizzazione:</label>
                 <input type="text" id="localizzazione" name="localizzazione">
                 @if ($errors->first('localizzazione'))
@@ -124,16 +121,16 @@
                         @endforeach
                     </ul>
                 @endif
-                    <br><br>
+                    <br><br><br>
                 <label for="logo">Logo:</label>
                 <input type="file" id="logo" name="logo"><br><br>
                     @if ($errors->first('logo'))
-                        <ul class="errore">
+                        <ul class="erroreLogo">
                             @foreach ($errors->get('logo') as $message)
                                 {{ $message }}
                             @endforeach
                         </ul>
-                        <br><br>
+                        <br>
                     @endif
                 <label for="tipologia">Tipologia di azienda:</label>
                 <input type="text" id="tipologia" name="tipologia">
@@ -144,7 +141,7 @@
                         @endforeach
                     </ul>
                 @endif
-                    <br><br>
+                    <br><br><br>
                 <label for="descrizioneAzienda">Descrizione dell'azienda:</label>
                 <textarea id="descrizioneAzienda" name="descrizioneAzienda"></textarea>
                 @if ($errors->first('descrizioneAzienda'))
@@ -155,7 +152,7 @@
                     </ul>
                 @endif
                 </center>
-                <br><br>
+                <br><br><br>
                 <input type="submit" value="Crea Azienda">
                 <br><br>
             </form>

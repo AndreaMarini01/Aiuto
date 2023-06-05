@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class aziendaRequest extends FormRequest
+class newAziendaRequest extends FormRequest
 {
     public function authorize()
     {

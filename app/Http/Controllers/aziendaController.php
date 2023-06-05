@@ -4,7 +4,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\aziendaRequest;
+use App\Http\Requests\editAziendaRequest;
+use App\Http\Requests\newAziendaRequest;
 use App\Models\Azienda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -39,21 +40,28 @@ class aziendaController extends Controller
     }
 
     public function eliminaAzienda(Request $request){
+        $logo= Azienda::where('idAzienda',$request->idAzienda)->select('logo')->get();
         DB::delete('delete from aziendas where idAzienda = ?',[$request->idAzienda]);
+        unlink('images/'.$logo[0]->logo);
         return redirect(route('listaAziende'));
     }
 
-    public function editAzienda(aziendaRequest $request)
+    public function editAzienda(editAziendaRequest $request)
     {
+
 
         $data['idAzienda'] = $request->idAzienda;
         $data['ragioneSociale'] = $request->ragioneSociale;
         $data['nomeAzienda'] = $request->nomeAzienda;
         $data['localizzazione'] = $request->localizzazione;
+        $logo= Azienda::where('idAzienda',$data['idAzienda'])->select('logo')->get();
         if ($request->logo){
             $logoName = time().'.'.$request->logo->extension();
             $data['logo'] = $logoName;
             $request->logo->move(public_path('images'), $logoName);
+            unlink('images/'.$logo[0]->logo);
+        } else {
+            $data['logo'] = $logo[0]->logo;
         }
         $data['tipologia'] = $request->tipologia;
         $data['descrizioneAzienda'] = $request->descrizioneAzienda;
@@ -64,7 +72,7 @@ class aziendaController extends Controller
         return redirect(route('listaAziende'));
     }
 
-    public function creaAzienda(aziendaRequest $request)
+    public function creaAzienda(newAziendaRequest $request)
     {
         $logoName = time().'.'.$request->logo->extension();
         $data['ragioneSociale'] = $request->ragioneSociale;
