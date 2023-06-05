@@ -34,8 +34,10 @@
         @foreach($listaPromozioni as $promozione)
             @csrf
             <div class="promozione">
-                <div><p id="nomePromozione"> Nome offerta: {{$promozione->nomePromozione}} </p></div>
-                <div><p id="oggetto"> Oggetto offerta: {{$promozione->oggetto}} </p></div>
+                <div><p id="nomePromozione"> Nome Offerta: {{$promozione->nomePromozione}} </p></div>
+                <div><p id="oggetto"> Oggetto Offerta: {{$promozione->oggetto}} </p></div>
+                <div class="sconto"><p id="scontistica"> Scontistica: {{$promozione->scontistica}}% </p></div>
+                <div><p id="nomeAzienda"> Nome Azienda: {{$promozione->nomeAzienda}} </p></div>
 
                 @can('isStaff')
                     <div>

@@ -2,15 +2,15 @@
 <html>
 @extends('layout.layout')
 @section('customCss')
-    <link rel="stylesheet" type="text/css" href="{{URL('css\visualizzaPromozione.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{URL('css\CRUDPromozioni\promozione.css') }}">
 @endsection
 
 @section('content')
 
     @if(!empty($info))
         @foreach($info as $promozione)
+            <br><br><br>
             <title>Visualizza Promozione {{$promozione->nomePromozione}}</title>
-            <p>Benvenuto nel tuo profilo personale!</p>
             <table>
                 <tr>
                     <th>Nome Offerta:</th>
@@ -43,7 +43,7 @@
             </table>
         @endforeach
     @endif
-    <center><div class="bottone_indietro"><button  onclick="location.href='{{route('listaAziende')}}';">Indietro</button> </div></center>
+    <center><div class="bottone_indietro"><button  onclick="location.href='{{route('listaPromozioni')}}';">Indietro</button> </div></center>
 
 
 @endsection

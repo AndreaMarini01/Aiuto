@@ -6,15 +6,19 @@
 @endsection
 
 @section('content')
-    @if($option == 'edit')
-        <h2>Modifica Promozione</h2>
-
-    @endif
-    @if($option == 'create')
-        <h2>Crea nuova promozione</h2>
-    @endif
     <center>
+        <?php $info = \App\Models\Azienda::all(); ?>
+        @if(sizeof($info)==0)
+            <p class="noAziende">Non ci sono registrate aziende nel sito</p>
+            <center><div class="bottone_indietro"><button  onclick="location.href='{{route('listaPromozioni')}}';">Indietro</button> </div></center>
+        @else
+            @if($option == 'edit')
+                <h2>Modifica Promozione</h2>
 
+            @endif
+            @if($option == 'create')
+                <h2>Crea nuova promozione</h2>
+            @endif
         @if(isset($promozione))
             @foreach($promozione as $promo)
 
@@ -71,13 +75,13 @@
                             </ul>
                         @endif
                         <br><br>
-                            <?php $info = \App\Models\Azienda::all(); ?>
                         <label>Azienda:</label>
                         @for($i=0;$i<=sizeof($info)-1;$i++)
                             <select id="Azienda" name="Azienda">
                                 <option value="{{$info[$i]['nomeAzienda']}}">{{$info[$i]['nomeAzienda']}}</option>
                                 @endfor
-                            </select><br><br>
+                            </select>
+                            <br><br>
                             <label for="dataScadenza">Data di scadenza:</label>
                             <input type="date" id="dataScadenza" name="dataScadenza" value="{{$promo->dataScadenza}}">
                             @if ($errors->first('dataScadenza'))
@@ -167,6 +171,6 @@
             </form></center>
             <br><br>
 @endif
-
+@endif
 
 @endsection

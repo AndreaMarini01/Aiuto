@@ -133,3 +133,20 @@ select {
     position: relative;
 
 }
+
+.noAziende{
+    color: darkred;
+    font-size: xxx-large;
+    margin-top: 250px;
+}
+
+.bottone_indietro button{
+    height: 35px;
+    margin-bottom: 80px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 24px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 30px;
+}
