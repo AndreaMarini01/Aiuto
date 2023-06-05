@@ -9,9 +9,11 @@
     <br>
     <center>
         @if($option=='edit')
+            <br><br>
             <h2>Modifica Faq</h2>
         @endif
         @if($option=='create')
+            <br><br>
             <h2>Crea Nuova Faq</h2>
         @endif
         <div>
@@ -19,22 +21,23 @@
                 @if(isset($faq))
                     @foreach($faq as $xfaq)
 
-                        <label for="domanda">domanda</label>
-                        <textarea id="domanda" name="domanda" rows="4" cols="50" required>{{$xfaq->domanda}}</textarea>
+                        <label class="testo" for="domanda">Domanda:</label>
+                        <textarea class="domanda" id="domanda" name="domanda" required>{{$xfaq->domanda}}</textarea>
                         <br>
-                        <label for="risposta">risposta </label>
-                        <textarea id="risposta" name="risposta" rows="4" cols="50" required>{{$xfaq->risposta}}</textarea>
+                        <label class="testo2" for="risposta">Risposta: </label>
+                        <textarea class="risposta" id="risposta" name="risposta" required>{{$xfaq->risposta}}</textarea>
                         <br>
-                        <input type="submit" value="Modifica Faq" formaction="{{route('salvaFaq', ['id'=>$xfaq->id])}}">
+                        <input class="button" type="submit" value="Modifica Faq" formaction="{{route('salvaFaq', ['id'=>$xfaq->id])}}">
                     @endforeach
                 @else
-                    <label for="domanda">Inserisci una nuova domanda</label>
-                    <textarea id="domanda" name="domanda" rows="4" cols="50" required></textarea>
+
+                    <label for="domanda" class="testo">Inserisci una nuova domanda:</label>
+                    <textarea class="domanda" id="domanda" name="domanda" required></textarea>
                     <br>
-                    <label for="risposta">Inserisci una nuova risposta</label>
-                    <textarea id="risposta" name="risposta" rows="4" cols="50" required></textarea>
+                    <label class="testo2" for="risposta">Inserisci una nuova risposta:</label>
+                    <textarea class="risposta" id="risposta" name="risposta" rows="4" cols="50" required></textarea>
                     <br>
-                    <input type="submit" value="Crea Faq"formaction="{{route('creaFaq')}}">
+                    <input class="button" type="submit" value="Crea Faq"formaction="{{route('creaFaq')}}">
                 @endif
 
 

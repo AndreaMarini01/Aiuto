@@ -9,21 +9,21 @@
     @if(!empty($info))
         @foreach($info as $azienda)
             <div class="titolo_azienda">
+                <br><br>
                 <h1>{{$azienda->nomeAzienda}}</h1>
             </div>
             <br>
             <div class="immagine_azienda">
                 <center>
                     <!--Da capire come inserire bene l'immagine-->
-                    <img src={{URL('images/'.$azienda->logo)}} height="200"width="200">
+                    <img src={{URL('images/'.$azienda->logo)}} height="300"width="300">
                     <br>
                 </center>
             </div>
-            <div class="carattesristiche_azienda">
+            <div class="caratteristiche_azienda">
                 <center>
-                    <i>
+                    <br>
                         <li>{{$azienda->localizzazione}}, {{$azienda->tipologia}}, {{$azienda->ragioneSociale}}</li>
-                    </i>
                 </center>
             </div>
             <br>
@@ -36,6 +36,7 @@
             </section>
         @endforeach
     @endif
+    <center><div class="bottone_indietro"><button  onclick="location.href='{{route('listaAziende')}}';">Indietro</button> </div></center>
 
 @endsection
 </html>

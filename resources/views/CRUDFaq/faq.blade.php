@@ -34,6 +34,7 @@
     @endif
     @if(isset(Auth::user()->nome))
         @can('isAdmin')
+            <br><br>
             <center>
                 <a class="faq-btn" href="{{route('faqedit',['id'=>'create'], ['option'=>'create'])}}">Inserisci una nuova FAQ
                 </a>

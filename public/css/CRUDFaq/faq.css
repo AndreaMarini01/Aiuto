@@ -1,5 +1,5 @@
 .domanada-faq {
-    background-color: #FFD95A;
+    background-color: #04AA6D;
     color: #444;
     cursor: pointer;
     padding: 18px;
@@ -34,10 +34,10 @@
 
 .faq-btn{
     display: flex;
-    height: 35px;
+    height: 40px;
     width: 150px;
     text-align: center;
-    background-color:#FFD95A ;
+    background-color:#04AA6D ;
     border-radius: 5px;
     border: 0.1px solid black;
     text-decoration: none;

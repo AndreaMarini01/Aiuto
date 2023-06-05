@@ -41,11 +41,12 @@ class filterController extends Controller
             $filteredCouponsbyName = Promozione::where('nomeAzienda', 'Like', '%' . $request->ricercaAzienda . '%')->get();
             $filteredCouponsbyWords = Promozione::where('oggetto', 'Like', '%' . $request->ricercaParola . '%')->get();
             foreach ($filteredCouponsbyWords as $filteredCouponbyWords) {
-                foreach ($filteredCouponsbyName as $filteredCouponbyName){
-                    if ($filteredCouponbyName==$filteredCouponbyWords){
-                        array_push($listaCoupon,$filteredCouponbyName);
+                foreach ($filteredCouponsbyName as $filteredCouponbyName) {
+                    if ($filteredCouponbyName == $filteredCouponbyWords) {
+                        array_push($listaCoupon, $filteredCouponbyName);
                     }
                 }
+            }
                 foreach ($listaCoupon as $coupon){
                     $output .=
                         '<div class="promozione">
@@ -54,7 +55,6 @@ class filterController extends Controller
                  </div>';
                 }
             }
-        }
         return response($output);
     }
 

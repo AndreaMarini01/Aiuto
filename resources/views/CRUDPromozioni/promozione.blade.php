@@ -43,6 +43,7 @@
             </table>
         @endforeach
     @endif
+    <center><div class="bottone_indietro"><button  onclick="location.href='{{route('listaAziende')}}';">Indietro</button> </div></center>
 
 
 @endsection
