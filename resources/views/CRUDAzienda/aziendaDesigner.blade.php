@@ -33,8 +33,14 @@
                     <br><br>
                     <label for="logo">Logo:</label>
                     <input type="file" id="logo" name="logo"><br><br>
-
-
+                    @if ($errors->first('logo'))
+                        <ul class="erroreLogo">
+                            @foreach ($errors->get('logo') as $message)
+                                {{ $message }}
+                            @endforeach
+                        </ul>
+                        <br>
+                    @endif
                     <label for="ragioneSociale">Ragione Sociale:</label>
                     <input type="text" id="ragioneSociale" name="ragioneSociale" value="{{$a->ragioneSociale}}">
                     @if ($errors->first('ragioneSociale'))

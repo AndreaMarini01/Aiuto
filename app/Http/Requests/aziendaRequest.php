@@ -16,7 +16,7 @@ class aziendaRequest extends FormRequest
     public function rules(){
         $azienda_id = $this->request->get('azienda_id');
         return[
-            'nomeAzienda'=>['required','string',Rule::unique('aziendas', 'nomeAzienda')->ignore($azienda_id)],
+            'nomeAzienda'=>['required','string',Rule::unique('aziendas', 'nomeAzienda')->ignore($azienda_id, 'idAzienda')],
             'localizzazione'=>'required',
             'tipologia'=>'required',
             'descrizioneAzienda'=>'required',
